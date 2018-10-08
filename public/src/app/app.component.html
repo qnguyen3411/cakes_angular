@@ -1,0 +1,54 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="col-11 mx-auto card-deck">
+  <div class="col-5 card p-0">
+    <div class="card-header">
+      Submit a cake to be rated
+    </div>
+      <form (submit)="submitNewCake()" class="form-group m-3">
+        Baker name:
+        <input class="form-control" 
+          type="text" 
+          name="cakeToPost['baker']"
+          [(ngModel)]="cakeToPost['baker']" >
+        Image url:
+        <input class="form-control" 
+        type="text" 
+        name="cakeToPost['imgUrl']"
+        [(ngModel)]="cakeToPost['imgUrl']">
+        
+        <input type="submit" value="SUBMIT" class="btn btn-dark">
+      </form>
+  </div>
+  <div class="col-7 card">
+    <ul class="" style="height: 300px; overflow: scroll;">
+      <li *ngFor="let cake of cakes" class="media">
+        <div class="media-left">
+        <img src="{{ cake.imgUrl }}"
+          alt="cake" 
+          style="height:100px; width:auto"
+          (click)="setSelectedCake(cake)">
+        </div>
+        <form (submit)="submitNewReviewForCake(cake)" class="form-group media-body col-8 ml-auto" >
+          <select name="cake.newReview['rating']" [(ngModel)]="cake.newReview['rating']">
+            <option value="1">1 star</option>
+            <option value="2">2 star</option>
+            <option value="3">3 star</option>
+            <option value="4">4 star</option>
+            <option value="5">5 star</option>
+          </select>
+          <input type="text" 
+            class="form-control" 
+            placeholder="Type your comment here" 
+            name="cake.newReview['content']" 
+            [(ngModel)]="cake.newReview['content']"
+            style="height:100px;">
+          <input type="submit" value="Rate!">
+        </form>
+      </li>
+     
+    </ul>
+  </div>
+
+</div>
+
+<app-cake *ngIf="selectedCake" [cakeToShow]="selectedCake"></app-cake>

@@ -1,0 +1,16 @@
+<div class="col-11 row mx-auto">
+    <h2 class="col-12">Baked by {{cakeToShow['baker']}}</h2>
+    <img class="col-6" src="{{cakeToShow['imgUrl']}}"
+      alt="cake" style="height:350px;">
+      
+    <div class="col-6">
+      <div class="card-header">Average rating: {{ avgRating() }} stars</div>
+      <ul class="list-group" style="height:350px; overflow: scroll">
+        <li *ngFor="let review of cakeToShow['reviews']" class=" list-group-item">
+          <p>{{review['content']}}</p>
+          <p>{{review['rating']}} stars</p>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
